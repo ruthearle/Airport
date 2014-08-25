@@ -22,4 +22,8 @@ class Airport
     planes.delete(plane)
     planes
   end
+
+  def full?
+    planes.count == capacity
+  end
 end
