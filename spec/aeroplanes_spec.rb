@@ -1,9 +1,14 @@
-require 'aeroplane'
+ require 'aeroplane'
 
 describe Aeroplane do
 
-	it 'when initialized is flying' do
-		plane = Aeroplane.new
-		expect(plane.flying).to be true
-	end	
+  let(:plane) { Aeroplane.new }
+
+	it 'has a flying status when created' do
+    expect(plane).to be_flying
+	end
+
+	it 'has a flying status when in the air' do
+    expect(plane.fly!).to be_flying
+	end
 end

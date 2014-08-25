@@ -1,7 +1,15 @@
 class Aeroplane
 
-	def flying
-		@flying = true
-	end
+  def initialize
+    @flying = true
+  end
 
+  def flying?
+    @flying
+  end
+
+  def fly!
+    @flying = true
+    self
+  end
 end
