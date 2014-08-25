@@ -1,7 +1,8 @@
 class Airport
 
-  def has_runways?
-    true
+  def runway(plane)
+    @runway = []
+    @runway << plane
   end
 
 end
