@@ -5,7 +5,7 @@ describe Aeroplane do
   let(:plane) { Aeroplane.new }
 
 	it 'has a flying status when created' do
-    expect(plane).to be_flying
+    expect(plane.status).to eq :flying
 	end
 
   it 'can take off' do
@@ -13,10 +13,13 @@ describe Aeroplane do
   end
 
   it 'has a status of flying after it takes off' do
-    expect(plane.flying?).to be true
+    plane.take_off!
+    expect(plane.take_off!.status).to eq :flying
   end
 
   it 'can land after it takes off' do
-    expect(plane.land!).not_to be_flying
+    plane.take_off!
+    expect(plane.land!.status).to eq :land
+
   end
 end

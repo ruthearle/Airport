@@ -1,19 +1,20 @@
 class Aeroplane
 
   def initialize
-    @flying = true
+    @status = :flying
   end
 
-  def flying?
-    @flying
+  def status
+    @status
   end
 
   def take_off!
+    @status = :flying
     self
   end
 
   def land!
-    @flying = false
+    @status = :land
     self
   end
 end
