@@ -15,4 +15,8 @@ describe Aeroplane do
   it 'can land after flying' do
     expect(plane.land!).not_to be_flying
   end
+
+  it 'has a status of flying when it takes off' do
+    expect(plane.take_off!).to be_flying
+  end
 end
