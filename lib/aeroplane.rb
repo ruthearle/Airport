@@ -12,4 +12,9 @@ class Aeroplane
     @flying = true
     self
   end
+
+  def land!
+    @flying = false
+    self
+  end
 end
