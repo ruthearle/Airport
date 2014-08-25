@@ -2,6 +2,8 @@ class Airport
 
   DEFAULT_CAPACITY = 5
 
+  attr_accessor :capacity
+
   def initialized(options = {})
     @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
   end
@@ -14,7 +16,8 @@ class Airport
     @capacity ||= DEFAULT_CAPACITY
   end
 
-  def landing_strip(plane)
+  def land(plane)
+    raise "The airport is full. No clearance for landing!" if full?
     planes << plane
   end
 
