@@ -9,7 +9,7 @@ describe Aeroplane do
 	end
 
   it 'can take off' do
-    expect(plane.take_off!).to be plane
+    expect(plane.land!).to be plane
   end
 
   it 'has a status of flying after it takes off' do

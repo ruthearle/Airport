@@ -32,7 +32,6 @@ describe Airport do
 
   context 'traffic control' do
 
-
     it 'a plane cannot land if the aiport is full' do
       expect(airport).not_to be_full
       Airport::DEFAULT_CAPACITY.times {airport.land(plane) }
@@ -42,7 +41,7 @@ describe Airport do
     it 'no aeroplanes can land if the airport is full' do
       # raise an exeception message if the airport is full
       airport.capacity= 0
-      expect { airport.land(plane) }.to raise_error#(RuntimeError, 'The airport full. No clearance to land!')
+      expect { airport.land(plane) }.to raise_error
     end
 
   end
