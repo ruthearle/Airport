@@ -18,10 +18,12 @@ class Airport
 
   def land(plane)
     raise "The airport is full. No clearance for landing!" if full?
+    plane.land!
     planes << plane
   end
 
   def runway(plane)
+    plane.take_off!
     planes.delete(plane)
     planes
   end

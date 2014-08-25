@@ -13,7 +13,7 @@ describe Airport do
     end
 
     it 'can have the capacity set at anytime' do
-      expect(airport.capacity(2)).to eq(2)
+      expect(airport.capacity=2).to eq(2)
     end
   end
 
