@@ -8,8 +8,7 @@ class Aeroplane
     @flying
   end
 
-  def fly!
-    @flying = true
+  def take_off!
     self
   end
 

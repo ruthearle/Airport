@@ -8,15 +8,15 @@ describe Aeroplane do
     expect(plane).to be_flying
 	end
 
-	it 'has a flying status when in the air' do
-    expect(plane.fly!).to be_flying
-	end
-
-  it 'can land after flying' do
-    expect(plane.land!).not_to be_flying
+  it 'can take off' do
+    expect(plane.take_off!).to be plane
   end
 
-  it 'has a status of flying when it takes off' do
-    expect(plane.take_off!).to be_flying
+  it 'has a status of flying after it takes off' do
+    expect(plane.flying?).to be true
+  end
+
+  it 'can land after it takes off' do
+    expect(plane.land!).not_to be_flying
   end
 end
