@@ -23,8 +23,10 @@ describe Airport do
     end
 
     it 'a plane cannot land if the aiport is full' do
+      expect(airport).not_to be_full
+      Airport::DEFAULT_CAPACITY.times {airport.landing_strip(plane) }
       expect(airport).to be_full
-      expect{ raise "The airport is full. No clearance for landing!" }.to raise_error
+      #expect{ raise "The airport is full. No clearance for landing!" }.to raise_error
     end
   end
 end
