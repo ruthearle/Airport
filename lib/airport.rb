@@ -6,18 +6,20 @@ class Airport
     @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
   end
 
+  def planes
+    @planes ||= []
+  end
+
   def capacity
     @capacity ||= DEFAULT_CAPACITY
   end
 
+  def landing_strip(plane)
+    planes << plane
+  end
+
   def runway(plane)
-    @runway = []
-    @runway << plane
+    planes.delete(plane)
+    planes
   end
-
-  def taxiway(plane)
-    @taxiway = []
-    @taxiway << plane
-  end
-
 end

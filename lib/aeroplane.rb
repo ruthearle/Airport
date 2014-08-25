@@ -14,7 +14,7 @@ class Aeroplane
   end
 
   def land!
-    @status = :land
+    @status = :landed
     self
   end
 end

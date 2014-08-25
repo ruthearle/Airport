@@ -19,7 +19,7 @@ describe Aeroplane do
 
   it 'can land after it takes off' do
     plane.take_off!
-    expect(plane.land!.status).to eq :land
+    expect(plane.land!.status).to eq :landed
 
   end
 end
