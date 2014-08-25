@@ -21,5 +21,10 @@ describe Airport do
       # a plane is taken from the hanger and sent to the runway
       expect(airport.runway(plane.take_off!)).to eq []
     end
+
+    it 'a plane cannot land if the aiport is full' do
+      expect(airport).to be_full
+      expect{ raise "The airport is full. No clearance for landing!" }.to raise_error
+    end
   end
 end
