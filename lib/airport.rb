@@ -1,4 +1,8 @@
+require_relative 'weather'
+
 class Airport
+
+  include Weather
 
   DEFAULT_CAPACITY = 5
 
@@ -16,13 +20,15 @@ class Airport
     @capacity ||= DEFAULT_CAPACITY
   end
 
-  def land(plane)
-    raise "The airport is full. No clearance for landing!" if full?
+  def land!(plane)
+    full_error if full?
+    stormy_land_error if condition == "stormy"
     plane.land!
     planes << plane
   end
 
-  def runway(plane)
+  def take_off!(plane)
+    stormy_take_off_error if condition == "stormy"
     plane.take_off!
     planes.delete(plane)
     planes
@@ -30,5 +36,17 @@ class Airport
 
   def full?
     planes.count == capacity
+  end
+
+  def full_error
+    raise "The airport is full. No clearance for landing!"
+  end
+
+  def stormy_land_error
+    raise "There is a storm brewing. No clearance for landing!"
+  end
+
+  def stormy_take_off_error
+    raise "There is a storm. No clearance for take off!"
   end
 end
