@@ -37,8 +37,8 @@ describe Airport do
 
     it 'a plane cannot land if the aiport is full' do
       expect(airport).not_to be_full
-       airport.capacity= 0
-      expect(airport).to be_full
+      airport.capacity= 0
+      expect(airport.full?).to be true
     end
 
     it 'no aeroplanes can land if the airport is full' do
@@ -59,5 +59,14 @@ describe Airport do
           expect { airport.land!(plane) }.to raise_error
         end
       end
+
+  context 'grand finale' do
+
+    it 'all planes can land' do
+      allow(airport).to receive(:land!)
+      allow(airport.planes).to receive(:each)
+      expect(airport.land_multiple!(plane)).to eq plane
   end
+  end
+end
 end

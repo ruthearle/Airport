@@ -20,6 +20,9 @@ describe Aeroplane do
   it 'can land after it takes off' do
     plane.take_off!
     expect(plane.land!.status).to eq :landed
+  end
 
+  it 'can be a fleet' do
+    expect(plane.fleet).to eq []
   end
 end

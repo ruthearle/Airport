@@ -38,6 +38,11 @@ class Airport
     planes.count == capacity
   end
 
+  def land_multiple!(plane)
+    flying_planes.each { |plane| airport.land!(plane) } 
+    flying_planes
+  end
+
   def full_error
     raise "The airport is full. No clearance for landing!"
   end

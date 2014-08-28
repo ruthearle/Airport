@@ -17,4 +17,8 @@ class Aeroplane
     @status = :landed
     self
   end
+
+  def fleet
+    @fleet = []
+  end
 end

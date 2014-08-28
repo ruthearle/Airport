@@ -6,11 +6,11 @@ require 'finale'
 # Once all the planes are in the air again, check that they have the status of flying!
 describe "The grand finale (last spec)" do
 
-	let(:finale)        { Finale.new                             }
-	let(:flying_planes) { double :aeroplane => :flying           }
-	let(:landed_planes) { double :aeroplane => :landed           }
-	let(:airport)      	{ double :aiport, :DEFAULT_CAPACITY => 6 }
-	let(:weather)      	{ double :weather, :condition => :stormy }
+	let(:finale)        { Finale.new                   }
+	let(:flying_planes) { double :aeroplane => :flying }
+	let(:landed_planes) { double :aeroplane => :landed }
+	let(:airport)      	{ double :airport              }
+	let(:weather)      	{ double :weather              }
 
 
   it 'all planes can land' do
@@ -21,7 +21,7 @@ describe "The grand finale (last spec)" do
 
  	 it 'all planes can take off' do
   	allow(airport).to receive(:take_off!)
-  	allow(landed_planes).to receive(:each)
+  	expect(landed_planes).to receive(:each)
   	expect(finale.take_off_multiple!(landed_planes)).to eq landed_planes
   end
 
@@ -29,5 +29,14 @@ describe "The grand finale (last spec)" do
   	allow(landed_planes).to receive(:status)
   	allow(landed_planes).to receive(:each)
   	expect(finale.planes_status(landed_planes)).to eq landed_planes
+  end
+
+  it 'when the airport is full all planes must takes off' do
+    expect(airport).to receive(:full?).and_return true
+    expect(finale.are_you_full?(airport)).to eq true
+    allow(airport).to receive(:planes)
+  end
+
+  it 'a plane cannot land in the middle of a storm' do
   end
 end
