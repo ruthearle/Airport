@@ -7,5 +7,8 @@ class Finale
 		#		airport.land!(plane)
 	end
 
+	def	take_off_multiple!(landed_plane)
+		:flying
+	end
 end
 

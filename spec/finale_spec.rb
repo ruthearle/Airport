@@ -15,9 +15,14 @@ describe "The grand finale (last spec)" do
 
   it 'all planes can land' do
   	allow(airport).to receive(:land!)
+  	allow(airport).to receive(:status)
   	expect(finale.land_multiple!(flying_plane)).to eq :landed
   end
 
- 
+ 	 it 'all planes can take off' do
+  	allow(airport).to receive(:take_off!)
+  	allow(airport).to receive(:status)
+  	expect(finale.take_off_multiple!(landed_plane)).to eq :flying
+  end
 
 end
