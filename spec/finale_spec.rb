@@ -7,22 +7,26 @@ require 'finale'
 describe "The grand finale (last spec)" do
 
 	let(:finale)        { Finale.new                             }
-	let(:flying_plane) { double :aeroplane => :flying           }
-	let(:landed_plane) { double :aeroplane => :landed           }
-	let(:airport)      { double :aiport, :DEFAULT_CAPACITY => 6 }
-	let(:weather)      { double :weather, :condition => :stormy }
+	let(:flying_planes) { double :aeroplane => :flying           }
+	let(:landed_planes) { double :aeroplane => :landed           }
+	let(:airport)      	{ double :aiport, :DEFAULT_CAPACITY => 6 }
+	let(:weather)      	{ double :weather, :condition => :stormy }
 
 
   it 'all planes can land' do
   	allow(airport).to receive(:land!)
-  	allow(airport).to receive(:status)
-  	expect(finale.land_multiple!(flying_plane)).to eq :landed
+  	allow(flying_planes).to receive(:each)
+  	expect(finale.land_multiple!(flying_planes)).to eq flying_planes
   end
 
  	 it 'all planes can take off' do
   	allow(airport).to receive(:take_off!)
-  	allow(airport).to receive(:status)
-  	expect(finale.take_off_multiple!(landed_plane)).to eq :flying
+  	allow(landed_planes).to receive(:each)
+  	expect(finale.take_off_multiple!(landed_planes)).to eq landed_planes
   end
 
+  it 'can check the status of all planes once they land' do
+  	allow(landed_planes).to receive(:status)
+  	expect(finale.airport_planes_status(landed_planes)).to eq :landed
+  end
 end
