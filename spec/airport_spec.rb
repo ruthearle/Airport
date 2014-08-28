@@ -5,6 +5,7 @@ describe Airport do
 
   let(:airport) { Airport.new     }
   let(:plane)   { double :plane   }
+  let(:fleet)   { double [:plane]   }
   let(:weather) { double :weather => :stormy }
 
   context 'airport capacity' do
@@ -22,13 +23,11 @@ describe Airport do
 
     it 'a plane can land' do
       allow(plane).to receive(:land!)
-      # once the plane has landed it goes to the hanger
       expect(airport.land!(plane)).to eq [plane]
     end
 
     it 'a plane can take off' do
       allow(plane).to receive(:take_off!)
-      # a plane is taken from the hanger and sent to the runway
       expect(airport.take_off!(plane)).to eq []
     end
   end
@@ -61,12 +60,18 @@ describe Airport do
       end
 
   context 'grand finale' do
+    # Given 6 planes, each plane must land. When the airport is full, every plane must take off again.
+    # Be careful of the weather, it could be stormy!
+    # Check when all the planes have landed that they have the right status "landed"
+    # Once all the planes are in the air again, check that they have the status of flying
 
-    it 'all planes can land' do
-      allow(airport).to receive(:land!)
-      allow(airport.planes).to receive(:each)
-      expect(airport.land_multiple!(plane)).to eq plane
-  end
+    it 'all planes within a fleet can land' do
+      allow(plane).to receive(:fleet)
+      allow(fleet).to  receive(:each)
+      allow(plane).to receive(:land!)
+      airport.land!(plane)
+      expect(airport.fleet_landing!(fleet)).to eq :landed
+    end
   end
 end
 end

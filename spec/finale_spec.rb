@@ -13,30 +13,30 @@ describe "The grand finale (last spec)" do
 	let(:weather)      	{ double :weather              }
 
 
-  it 'all planes can land' do
+  xit 'all planes can land' do
   	allow(airport).to receive(:land!)
   	allow(flying_planes).to receive(:each)
   	expect(finale.land_multiple!(flying_planes)).to eq flying_planes
   end
 
- 	 it 'all planes can take off' do
+ 	xit 'all planes can take off' do
   	allow(airport).to receive(:take_off!)
   	expect(landed_planes).to receive(:each)
   	expect(finale.take_off_multiple!(landed_planes)).to eq landed_planes
   end
 
-  it 'can check the status of all planes once they land' do
+  xit 'can check the status of all planes once they land' do
   	allow(landed_planes).to receive(:status)
   	allow(landed_planes).to receive(:each)
   	expect(finale.planes_status(landed_planes)).to eq landed_planes
   end
 
-  it 'when the airport is full all planes must takes off' do
+  xit 'when the airport is full all planes must takes off' do
     expect(airport).to receive(:full?).and_return true
     expect(finale.are_you_full?(airport)).to eq true
     allow(airport).to receive(:planes)
   end
 
-  it 'a plane cannot land in the middle of a storm' do
+  xit 'a plane cannot land in the middle of a storm' do
   end
 end

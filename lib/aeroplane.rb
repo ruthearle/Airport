@@ -1,5 +1,7 @@
 class Aeroplane
 
+  attr_accessor :fleet
+  
   def initialize
     @status = :flying
   end
