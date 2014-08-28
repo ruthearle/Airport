@@ -27,6 +27,7 @@ describe "The grand finale (last spec)" do
 
   it 'can check the status of all planes once they land' do
   	allow(landed_planes).to receive(:status)
-  	expect(finale.airport_planes_status(landed_planes)).to eq :landed
+  	allow(landed_planes).to receive(:each)
+  	expect(finale.planes_status(landed_planes)).to eq landed_planes
   end
 end

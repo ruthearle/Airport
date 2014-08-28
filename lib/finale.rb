@@ -11,8 +11,9 @@ class Finale
 		landed_planes
 	end
 
-	def airport_planes_status(landed_planes)
-		:landed
+	def planes_status(landed_planes)
+		landed_planes.each { |plane| plane.status }
+		landed_planes
 	end
 end
 
