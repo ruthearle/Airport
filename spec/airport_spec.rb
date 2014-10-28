@@ -1,12 +1,12 @@
 require 'airport'
-require 'aeroplane'
 
 describe Airport do
 
   let(:airport) { Airport.new     }
   let(:plane)   { double :plane   }
   let(:fleet)   { double [:plane]   }
-  let(:weather) { double :weather => :stormy }
+  before {allow(airport).to receive(:condition).and_return(:sunny)}
+
 
   context 'airport capacity' do
 
@@ -21,14 +21,21 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    it 'a plane can land' do
+    it 'when landing at the airport the plane is told to lands' do
+      expect(plane).to receive(:land!)
+      airport.land!(plane)
+    end
+
+    it "when landing a plane it is added to the fleet at the airport" do
       allow(plane).to receive(:land!)
-      expect(airport.land!(plane)).to eq [plane]
+      airport.land!(plane)
+      expect(airport.planes).to eq [plane]
     end
 
     it 'a plane can take off' do
       allow(plane).to receive(:take_off!)
-      expect(airport.take_off!(plane)).to eq []
+      airport.take_off!(plane)
+      expect(airport.planes).to eq []
     end
   end
 
@@ -36,25 +43,27 @@ describe Airport do
 
     it 'a plane cannot land if the aiport is full' do
       expect(airport).not_to be_full
-      airport.capacity= 0
+      airport.capacity= 1
+      allow(plane).to receive(:land!)
+      airport.land!(plane)
       expect(airport.full?).to be true
     end
 
     it 'no aeroplanes can land if the airport is full' do
       # raise an exeception message if the airport is full
       airport.capacity= 0
-      expect { airport.land!(plane) }.to raise_error
+      expect { airport.land!(plane) }.to raise_error "The airport is full. No clearance for landing!"
     end
 
       context 'weather conditions' do
 
         it 'a plane cannot take off if there is a storm brewing' do
-          allow(weather).to receive(:condition).and_return(:stormy)
+          allow(airport).to receive(:condition).and_return(:stormy)
           expect { airport.take_off!(plane) }.to raise_error
         end
 
         it 'a plane cannot land in the middle of a storm' do
-          allow(weather).to receive(:condition).and_return(:stormy)
+          allow(airport).to receive(:condition).and_return(:stormy)
           expect { airport.land!(plane) }.to raise_error
         end
       end
@@ -70,8 +79,13 @@ describe Airport do
       allow(fleet).to  receive(:each)
       allow(plane).to receive(:land!)
       airport.land!(plane)
-      expect(airport.fleet_landing!(fleet)).to eq :landed
+      allow(fleet).to receive(:status)
+      expect(airport.fleet_landing!(fleet)).to eq [fleet.status]
     end
+
+    it 'all planes within a fleet must return the status landed'
+
+    
   end
 end
 end

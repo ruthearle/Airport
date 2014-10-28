@@ -6,7 +6,7 @@ class Airport
 
   DEFAULT_CAPACITY = 5
 
-  attr_accessor :capacity
+  attr_writer :capacity
 
   def initialized(options = {})
     @capacity = options.fetch(:capacity, DEFAULT_CAPACITY)
@@ -22,16 +22,13 @@ class Airport
 
   def land!(plane)
     full_error if full?
-    stormy_land_error if condition == "stormy"
-    plane.land!
-    planes << plane
+    stormy_land_error if condition == :stormy
+    planes << plane.land!
   end
 
   def take_off!(plane)
-    stormy_take_off_error if condition == "stormy"
-    plane.take_off!
-    planes.delete(plane)
-    planes
+    stormy_take_off_error if condition == :stormy
+    planes.delete(plane.take_off!)
   end
 
   def full?
@@ -39,7 +36,7 @@ class Airport
   end
 
   def fleet_landing!(fleet)
-    :landed
+    planes  
   end
 
 

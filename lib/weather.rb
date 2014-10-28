@@ -6,6 +6,5 @@ module Weather
   
   def condition
     weather.sample
-    return self
   end
 end
