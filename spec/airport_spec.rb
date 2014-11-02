@@ -21,15 +21,15 @@ describe Airport do
 
   context 'taking off and landing' do
 
-    it 'when landing at the airport the plane is told to lands' do
+    it 'when landing at the airport the plane is told to land' do
       expect(plane).to receive(:land!)
       airport.land!(plane)
     end
 
-    it "when landing a plane it is added to the fleet at the airport" do
+    it "when landing a plane is added to the fleet at the airport" do
       allow(plane).to receive(:land!)
       airport.land!(plane)
-      expect(airport.planes).to eq [plane]
+      expect(airport.planes).to eq plane
     end
 
     it 'a plane can take off' do
@@ -68,24 +68,5 @@ describe Airport do
         end
       end
 
-  context 'grand finale' do
-    # Given 6 planes, each plane must land. When the airport is full, every plane must take off again.
-    # Be careful of the weather, it could be stormy!
-    # Check when all the planes have landed that they have the right status "landed"
-    # Once all the planes are in the air again, check that they have the status of flying
-
-    it 'all planes within a fleet can land' do
-      allow(plane).to receive(:fleet)
-      allow(fleet).to  receive(:each)
-      allow(plane).to receive(:land!)
-      airport.land!(plane)
-      allow(fleet).to receive(:status)
-      expect(airport.fleet_landing!(fleet)).to eq [fleet.status]
-    end
-
-    it 'all planes within a fleet must return the status landed'
-
-    
   end
-end
 end

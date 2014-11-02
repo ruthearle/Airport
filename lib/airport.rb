@@ -23,7 +23,7 @@ class Airport
   def land!(plane)
     full_error if full?
     stormy_land_error if condition == :stormy
-    planes << plane.land!
+    planes << (plane.land!)
   end
 
   def take_off!(plane)
@@ -34,11 +34,6 @@ class Airport
   def full?
     planes.count == capacity
   end
-
-  def fleet_landing!(fleet)
-    planes  
-  end
-
 
   def full_error
     raise "The airport is full. No clearance for landing!"
