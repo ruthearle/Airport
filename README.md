@@ -6,7 +6,7 @@
 
 # Airport
 
-####Weekend Challenge
+####Weekend Challenge (no pairing)
 
 Modelling an airport in Ruby.
 
