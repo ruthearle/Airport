@@ -1,8 +1,8 @@
 [![Code Climate](https://codeclimate.com/repos/54539a45e30ba07499006ff2/badges/1b43f5aac5f4488e1861/gpa.svg)](https://codeclimate.com/repos/54539a45e30ba07499006ff2/feed)
 [![Test Coverage](https://codeclimate.com/repos/54539a45e30ba07499006ff2/badges/1b43f5aac5f4488e1861/coverage.svg)](https://codeclimate.com/repos/54539a45e30ba07499006ff2/feed)
 
-| [*Makers Academy*](http://www.makersacademy.com) | Week 3 - Project |
-| ------------------------------------------------ | ---------------- |
+| [*Makers Academy*](http://www.makersacademy.com) | Week 3 - Challenge |
+| ------------------------------------------------ | ------------------ |
 
 # Airport
 
